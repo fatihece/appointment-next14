@@ -1,0 +1,31 @@
+{
+  "Index": {
+    "services": "Hizmetlerimiz",
+    "welcome": "Randevu alma merkezine hosgeldiniz",
+    "choose_date": "Tarih ve saat seciniz",
+    "back": "Geri",
+    "thanks": "Tesekkur ederiz.",
+    "service_add": "Hizmet ve personel basarili bir sekilde eklendi"
+  },
+  "ThankYou": {
+    "thanks": "Tesekkur ederiz!",
+    "done": "Randevunuz basarili bir sekilde olusturuldu",
+    "phone": "An informative message was sent to your phone",
+    "app_info": "Telefonunuza bilgilendirme mesaji gonderildi",
+    "date": "Tarih / Saat",
+    "company": "Firma",
+    "service": "Hizmet",
+    "employee": "Personel"
+  },
+  "Form": {
+    "contact": "Bilgilerinizi giriniz",
+    "name": "Ad Soyad",
+    "phone": "Telefon",
+    "message": "Mesajiniz",
+    "make_app": "Randevu Olustur",
+    "created": "Randevunuz basarili bir sekilde olusturuldu."
+  },
+  "LocaleSwitcher": {
+    "switchLocale": "Degistir {locale, {Turkish} en {English} other {Unknown}}"
+  }
+}

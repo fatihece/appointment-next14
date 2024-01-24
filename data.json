@@ -1,0 +1,87 @@
+[
+  {
+    "id": 1,
+    "name": "Kervansaray Spa",
+    "slug": "kervansaray",
+    "services": [
+      {
+        "id": 103,
+        "name": "Sirt Masaji",
+        "slug": "sirt-masaji",
+        "price": "250",
+        "employees": [
+          { "id": 1005, "name": "Masör Murat " },
+          { "id": 1006, "name": "Masör Zeynep" }
+        ]
+      },
+
+      {
+        "id": 104,
+        "name": "Yuz Masaji",
+        "slug": "yuz-masaji",
+        "price": "150",
+        "employees": [
+          { "id": 1007, "name": "Masör Fatma" },
+          { "id": 1008, "name": "Masör Mustafa" }
+        ]
+      },
+      {
+        "id": 102,
+        "name": "Hamam",
+        "slug": "hamam",
+        "price": "350",
+        "employees": []
+      },
+
+      {
+        "id": 108,
+        "name": "Sauna",
+        "slug": "sauna",
+        "price": "400",
+        "employees": [
+          { "id": 1001, "name": "Dr. Ceren " },
+          { "id": 1002, "name": " Dr. Gizem" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Kervansaray Hamam",
+    "slug": "kervan-hamam",
+    "services": [
+      {
+        "id": 201,
+        "name": "Diş Kontrolü",
+        "slug": "dis",
+        "price": "550",
+        "employees": [
+          { "id": 2001, "name": "Dt. Mehmet " },
+          { "id": 2002, "name": "Dt. Zeynep" }
+        ]
+      },
+
+      {
+        "id": 101,
+        "name": "Ortopedi",
+        "slug": "ortopedi",
+        "price": "480",
+        "employees": [
+          { "id": 1001, "name": "Dr. Ahmet" },
+          { "id": 1002, "name": " Dr. Ayşe" }
+        ]
+      },
+
+      {
+        "id": 102,
+        "name": "Bambu Masaj",
+        "slug": "bambu-masaj",
+        "price": "550",
+        "employees": [
+          { "id": 1003, "name": "Masör Mehmet" },
+          { "id": 1004, "name": "Masör Ayşe " }
+        ]
+      }
+    ]
+  }
+]

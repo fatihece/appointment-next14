@@ -6,8 +6,6 @@ import {
   useReducer,
   useState,
 } from "react";
-import { toast } from "react-hot-toast";
-import json from "/data.json";
 
 const initialState = {
   company: "",
@@ -79,7 +77,6 @@ export const AppContext = createContext();
 
 //step2:create the provider
 export function AppProvider({ children }) {
-  //   const { data, loading } = useFetch("/products");
   const [state, dispatch] = useReducer(reducer, initialState);
   console.log("DATA", state);
 
@@ -97,7 +94,6 @@ export function useAppContext() {
   if (!context) {
     throw new Error("useAppContext must be used within an AppProvider");
   }
-  // return the context data
   return context;
 }
 //4 Integrate the AppProvider in the Upermost component

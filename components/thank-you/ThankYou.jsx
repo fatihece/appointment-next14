@@ -1,12 +1,11 @@
 "use client";
 import { useAppContext } from "@/app/context/AppContext";
 import { formatDate } from "@/utils/helper";
-import { useTranslations } from "next-intl";
 
 const ThankYou = () => {
   const { state, dispatch } = useAppContext();
   const appDate = formatDate(state.date.time);
-  const t = useTranslations("ThankYou");
+
   return (
     <div className="flex items-center justify-center h-screen px-3">
       <div className="p-4 rounded shadow-xl">
@@ -25,35 +24,32 @@ const ThankYou = () => {
               d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-          <h1 className="text-2xl sm:text-4xl font-bold">{t("thanks")}</h1>
+          <h1 className="text-2xl sm:text-4xl font-bold">Tesekkur ederiz!</h1>
 
           <p className="text-lg sm:text-2xl font-semibold px-5 text-center">
-            {/* Sayin {state.contact.name} randevunuz basarili bir sekilde
-            olusturuldu. */}
-            {t("done", { name: state.contact.name })}
+            Sayin {state.contact.name} randevunuz basarili bir sekilde
+            olusturuldu.
           </p>
           <p className=" sm:text-xl text-center">
-            {/* <strong>{state.contact.phone}</strong> nolu telefona bilgilendirme
-            mesaji gonderildi. */}
-            {t("phone")}
+            <strong>{state.contact.phone}</strong> nolu telefona bilgilendirme
+            mesaji gonderildi.
           </p>
           <h3 className="sm:text-xl font-medium">
-            {/* Randevu bilgileriniz asagida siralanmistir. */}
-            {t("app_info")}
+            Randevu bilgileriniz asagida siralanmistir.
           </h3>
           <ul className="sm:text-xl dive-stone-200 divide-y border-b border-t">
             <li className="py-2">
-              <strong>{t("company")} :</strong> {state.company}
+              <strong>Firma :</strong> {state.company}
             </li>
             <li className="py-2">
-              <strong>{t("service")} :</strong> {state.service.name}
+              <strong>Hizmet:</strong> {state.service.name}
             </li>
             <li className="py-2">
-              <strong>{t("employee")} :</strong>{" "}
+              <strong>Personel:</strong>{" "}
               {state.service.employee === "" ? " - " : state.service.employee}
             </li>
             <li className="py-2">
-              <strong>{t("date")} :</strong> {appDate}
+              <strong>Tarih :</strong> {appDate}
             </li>
           </ul>
         </div>

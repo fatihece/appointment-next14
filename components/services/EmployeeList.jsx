@@ -3,12 +3,11 @@
 import { useRouter } from "next/navigation";
 import { useAppContext, ActionTypes } from "@/app/context/AppContext";
 import toast from "react-hot-toast";
-import { useTranslations } from "next-intl";
 
 const EmployeeList = ({ list }) => {
   const router = useRouter();
   const { state, dispatch } = useAppContext();
-  const t = useTranslations("Index");
+
   const updateEmployee = (employee) => {
     dispatch({
       type: ActionTypes.UPDATE_SERVICE,
@@ -16,7 +15,7 @@ const EmployeeList = ({ list }) => {
         employee: employee,
       },
     });
-    toast.success(t("service_add"));
+    toast.success("Hizmet ve personel basarili bir sekilde eklendi");
     router.push("/calendar");
   };
   return (

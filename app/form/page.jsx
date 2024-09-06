@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useAppContext, ActionTypes } from "@/app/context/AppContext";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+
 import Route from "@/components/ui/Route";
 const isValidPhone = (str) =>
   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
@@ -11,8 +11,6 @@ const isValidPhone = (str) =>
   );
 
 const ContactPage = ({ params }) => {
-  console.log(params);
-  const t = useTranslations("Form");
   const { state, dispatch } = useAppContext();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -86,8 +84,7 @@ const ContactPage = ({ params }) => {
     setName("");
     setPhone("");
     setMessage("");
-    toast.success(t("created"));
-    router.push("/thank-you");
+    router.push("thank-you");
   };
   // };
 
@@ -96,19 +93,18 @@ const ContactPage = ({ params }) => {
       <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md shadow-lg my-12">
         <Route />
         <h6 className="text-xl font-semibold mb-3 text-center">
-          {t("contact")}
+          Bilgilerinizi giriniz
         </h6>
         <form
           onSubmit={handleSubmit}
           className="space-y-8 w-[350px] md:w-[450px] mx-auto"
-          lang={params.locale}
         >
           <div>
             <label
               htmlFor="name"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
             >
-              {t("name")}
+              Ad Soyad
             </label>
             <input
               type="text"
@@ -117,7 +113,7 @@ const ContactPage = ({ params }) => {
               // onFocus={() => handleFieldFocus("name")}
               onChange={(e) => setName(e.target.value)}
               className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
-              placeholder={t("name")}
+              placeholder="Ad Soyad"
               required
             />
             {/* {errors.name && touchedFields.name && (
@@ -129,7 +125,7 @@ const ContactPage = ({ params }) => {
               htmlFor="tel"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
             >
-              {t("phone")}
+              Telefon
             </label>
             <input
               type="tel"
@@ -138,7 +134,7 @@ const ContactPage = ({ params }) => {
               // onFocus={() => handleFieldFocus("phone")}
               onChange={(e) => setPhone(e.target.value)}
               className="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
-              placeholder={t("phone")}
+              placeholder="Telefon"
               required
             />
             {/* {errors.phone && touchedFields.phone && (
@@ -150,7 +146,7 @@ const ContactPage = ({ params }) => {
               htmlFor="message"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
             >
-              {t("message")}
+              Mesajiniz
             </label>
             <textarea
               id="message"
@@ -159,7 +155,7 @@ const ContactPage = ({ params }) => {
               // onFocus={() => handleFieldFocus("message")}
               onChange={(e) => setMessage(e.target.value)}
               className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-              placeholder={t("message")}
+              placeholder="Mesajiniz"
             ></textarea>
             {/* {errors.message && touchedFields.message && (
               <p className="text-sm text-red-500">{errors.message}</p>
@@ -170,7 +166,7 @@ const ContactPage = ({ params }) => {
             className="text-white w-full bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
             // disabled={!isFormValid}
           >
-            {t("make_app")}
+            Randevu Olustur
           </button>
         </form>
       </div>

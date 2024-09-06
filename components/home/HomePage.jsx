@@ -5,11 +5,9 @@ import Route from "@/components/ui/Route";
 import Services from "@/components/services/Services";
 import { useEffect } from "react";
 import { useAppContext, ActionTypes } from "@/app/context/AppContext";
-import { useTranslations } from "next-intl";
 
 const HomePage = ({ store, slug }) => {
   const { state, dispatch } = useAppContext();
-  const t = useTranslations("Index");
 
   useEffect(() => {
     const updateCompany = (companyName) => {
@@ -32,9 +30,7 @@ const HomePage = ({ store, slug }) => {
         </h3>
 
         <div className="flex justify-between items-center">
-          <h3 className="uppercase font-semibold text-2xl my-3">
-            {t("services")}
-          </h3>
+          <h3 className="uppercase font-semibold text-2xl my-3">SERVISLER</h3>
         </div>
 
         <div className="flex flex-col md:flex-row gap-4 text-center ">

@@ -13,14 +13,13 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useAppContext, ActionTypes } from "@/app/context/AppContext";
 import Route from "../ui/Route";
-import { useTranslations } from "next-intl";
 const DynamicCalendar = dynamic(() => import("react-calendar"), { ssr: false });
 
 const CalendarComponent = () => {
   const router = useRouter();
   const [date, setDate] = useState({ justDate: null, dateTime: null });
   const { state, dispatch } = useAppContext();
-  const t = useTranslations("Index");
+
   const updateDateAndTime = (justDate, dateTime) => {
     dispatch({
       type: ActionTypes.UPDATE_DATE,
@@ -61,7 +60,7 @@ const CalendarComponent = () => {
     <section className="">
       <div className="flex flex-col h-screen items-center justify-center px-3  mx-auto max-w-screen-md shadow-lg">
         {!date.justDate && <Route />}
-        <h6 className="text-xl font-semibold mb-3">{t("choose_date")}</h6>
+        <h6 className="text-xl font-semibold mb-3">Tarih ve saat seciniz</h6>
         {date.justDate ? (
           <div className="flex justify-center max-w-screen-md flex-wrap gap-4">
             {times?.map((time, i) => (

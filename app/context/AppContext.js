@@ -78,7 +78,7 @@ export const AppContext = createContext();
 //step2:create the provider
 export function AppProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log("DATA", state);
+  // console.log("DATA", state);
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>

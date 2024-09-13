@@ -4,7 +4,7 @@ import Link from "next/link";
 import EmployeeList from "./EmployeeList";
 import { useState } from "react";
 import { useAppContext, ActionTypes } from "@/app/context/AppContext";
-import { formatCurrency } from "@/utils/helper";
+import { formatCurrency } from "@/lib/helper";
 import { useRouter } from "next/navigation";
 
 const Services = ({ service, name, slug, path, list, price }) => {

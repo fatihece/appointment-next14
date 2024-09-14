@@ -1,103 +1,128 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { useAppContext, ActionTypes } from "@/app/context/AppContext";
+import React, { useState } from "react";
+import { useAppContext } from "@/app/context/AppContext";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 import Route from "./Route";
-const isValidPhone = (str) =>
-  /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
-    str
-  );
 
 const Form = () => {
-  const { state, dispatch } = useAppContext();
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [contact, setContact] = useState({
+    fullname: "",
+    phone: "",
+  });
+  const [errors, setErrors] = useState({
+    fullname: "",
+    phone: "",
+  });
 
+  const { dispatch } = useAppContext();
   const router = useRouter();
-  const [errors, setErrors] = useState({});
-  const [isFormValid, setIsFormValid] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setContact((prev) => ({ ...prev, [name]: value }));
+
+    // Hatalari temizle
+    setErrors((prev) => ({ ...prev, [name]: "" }));
+  };
+
+  const validateForm = () => {
+    let formIsValid = true;
+    const newErrors = { fullname: "", phone: "" };
+
+    if (!contact.fullname) {
+      newErrors.fullname = "Lütfen adınızı girin";
+      formIsValid = false;
+    }
+    if (!contact.phone) {
+      newErrors.phone = "Lütfen telefon numaranızı girin";
+      formIsValid = false;
+    } else if (!/^\d{11}$/.test(contact.phone)) {
+      newErrors.phone = "Geçerli bir telefon numarası girin (11 haneli)";
+      formIsValid = false;
+    }
+
+    setErrors(newErrors);
+    return formIsValid;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!validateForm()) return;
+
+    // Dispatch contact details to context
     dispatch({
       type: "SET_CONTACT",
       payload: {
-        name,
-        phone,
+        name: contact.fullname,
+        phone: contact.phone,
       },
     });
-    setName("");
-    setPhone("");
-    router.push("thank-you");
+
+    router.push("/thank-you");
   };
 
   return (
-    <section className="">
-      <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md shadow-lg my-12">
-        <Route />
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <Route />
+
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-6 max-w-md w-full p-6 bg-white shadow-lg rounded-lg"
+      >
         <h6 className="text-xl font-semibold mb-3 text-center">
           Bilgilerinizi giriniz
         </h6>
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-8 w-[350px] md:w-[450px] mx-auto"
-        >
-          <div>
-            <label
-              htmlFor="name"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            >
-              Ad Soyad
-            </label>
-            <input
-              type="text"
-              id="name"
-              value={name}
-              // onFocus={() => handleFieldFocus("name")}
-              onChange={(e) => setName(e.target.value)}
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
-              placeholder="Ad Soyad"
-              required
-            />
-            {/* {errors.name && touchedFields.name && (
-              <p className="text-sm text-red-500">{errors.name}</p>
-            )} */}
-          </div>
-          <div>
-            <label
-              htmlFor="tel"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            >
-              Telefon
-            </label>
-            <input
-              type="tel"
-              id="tel"
-              value={phone}
-              // onFocus={() => handleFieldFocus("phone")}
-              onChange={(e) => setPhone(e.target.value)}
-              className="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
-              placeholder="Telefon"
-              required
-            />
-            {/* {errors.phone && touchedFields.phone && (
-              <p className="text-sm text-red-500">{errors.phone}</p>
-            )} */}
-          </div>
+        <div className="flex flex-col">
+          <label htmlFor="fullname" className="mb-1 font-medium text-gray-700">
+            Ad Soyad
+          </label>
+          <input
+            type="text"
+            id="fullname"
+            name="fullname"
+            placeholder="Ad Soyad"
+            value={contact.fullname}
+            onChange={handleChange}
+            className={`border p-2 rounded-md ${
+              errors.fullname ? "border-red-500" : "border-gray-300"
+            } focus:outline-none focus:border-mantis-500`}
+          />
+          {errors.fullname && (
+            <p className="text-red-500 text-sm mt-1">{errors.fullname}</p>
+          )}
+        </div>
 
-          <button
-            type="submit"
-            className="text-white w-full bg-mantis-700 hover:bg-mantis-800 focus:ring-4 focus:outline-none focus:ring-mantis-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-mantis-600 dark:hover:bg-mantis-700 dark:focus:ring-mantis-800"
-            // disabled={!isFormValid}
-          >
-            Randevu Olustur
-          </button>
-        </form>
-      </div>
-    </section>
+        <div className="flex flex-col">
+          <label htmlFor="phone" className="mb-1 font-medium text-gray-700">
+            Telefon Numarasi
+          </label>
+          <input
+            type="text"
+            id="phone"
+            name="phone"
+            placeholder="05554443322"
+            value={contact.phone}
+            onChange={handleChange}
+            className={`border p-2 rounded-md ${
+              errors.phone ? "border-red-500" : "border-gray-300"
+            } focus:outline-none focus:border-mantis-500`}
+          />
+          {errors.phone && (
+            <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+          )}
+        </div>
+
+        <button
+          type="submit"
+          className="bg-mantis-600 text-white p-2 rounded-md hover:bg-mantis-700"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
   );
 };
-
 export default Form;

@@ -3,6 +3,7 @@ import { getFreeTimesByDate, getServiceByDate } from "@/lib/data-service";
 
 const page = async () => {
   const data = await getServiceByDate();
+  console.log("DATA", data);
   const times = await getFreeTimesByDate();
   console.log("TIMES", times);
   return (
@@ -11,22 +12,13 @@ const page = async () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {data.output.map((item, index) => (
           <div
-            className="flex flex-col items-center  gap-3 bg-ruth-200 p-4 rounded-md shadow-lg transition-all hover:-translate-y-1  border-l-4 border-ruth-700"
+            className="flex flex-col items-center  gap-3 bg-mantis-200 p-4 rounded-md shadow-lg transition-all hover:-translate-y-1  border-l-4 border-mantis-700"
             key={item.id}
           >
-            <div className="text-ruth-700 font-semibold text-xl">
+            <div className="text-mantis-700 font-semibold text-xl">
               {item.resarvation_now_plan_name}
             </div>
             <div className="font-bold">{item.employee_name}</div>
-
-            <ul>
-              <p className="text-center font-semibold  mb-1">HIZMETLER</p>
-              {item.services.map((i, index) => (
-                <li key={index} className="list-disc">
-                  {i}
-                </li>
-              ))}
-            </ul>
           </div>
         ))}
       </div>

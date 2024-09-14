@@ -1,11 +1,11 @@
 "use client";
 import { useAppContext } from "@/app/context/AppContext";
-import { formatDate } from "@/utils/helper";
+// import { formatDate } from "@/lib/helper";
 
 const ThankYou = () => {
   const { state, dispatch } = useAppContext();
-  const appDate = formatDate(state.date.time);
-
+  // const appDate = formatDate(state.date.time);
+  console.log("Thank You", state);
   return (
     <div className="flex items-center justify-center h-screen px-3">
       <div className="p-4 rounded shadow-xl">
@@ -25,8 +25,13 @@ const ThankYou = () => {
             />
           </svg>
           <h1 className="text-2xl sm:text-4xl font-bold">Tesekkur ederiz!</h1>
+          <p>service_now_plan_id : {state.id}</p>
+          <p>plan_date: {state.date}</p>
+          <p>plan_Time: {state.time}</p>
+          <p>Name: {state.contact.name}</p>
+          <p>Phone: {state.contact.phone}</p>
 
-          <p className="text-lg sm:text-2xl font-semibold px-5 text-center">
+          {/* <p className="text-lg sm:text-2xl font-semibold px-5 text-center">
             Sayin {state.contact.name} randevunuz basarili bir sekilde
             olusturuldu.
           </p>
@@ -49,9 +54,18 @@ const ThankYou = () => {
               {state.service.employee === "" ? " - " : state.service.employee}
             </li>
             <li className="py-2">
-              <strong>Tarih :</strong> {appDate}
+              <strong>Tarih :</strong>
             </li>
-          </ul>
+          </ul> */}
+
+          {/* {
+    "service_now_plan_id" : "119",
+    "plan_date": "2024-09-04",
+    "plan_time" : "16:00",
+    "customer_name": "ALİ TOKSÖZ",
+    "customer_phone": "+905323929650"
+
+} */}
         </div>
       </div>
     </div>

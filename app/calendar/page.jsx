@@ -1,4 +1,4 @@
-import CalendarComponent from "@/components/calendar/Calendar";
+import CalendarComponent from "@/components/Calendar";
 
 const page = () => {
   return <CalendarComponent />;

@@ -1,10 +1,11 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { useAppContext } from "@/app/context/AppContext";
+import toast from "react-hot-toast";
 
-import { useAppContext, ActionTypes } from "@/app/context/AppContext";
 const ReservationList = ({ data }) => {
   const router = useRouter();
-  const { dispatch } = useAppContext(); // Access the dispatch function
+  const { dispatch } = useAppContext();
 
   const handleSelect = (reservation_name, employee_name, id) => {
     // Dispatch the action to set the selected reservation and employee
@@ -16,8 +17,15 @@ const ReservationList = ({ data }) => {
         id,
       },
     });
-
-    // Navigate to '/calendar'
+    toast.success(`${reservation_name} için ${employee_name} seçildi!`, {
+      position: "top-center",
+      autoClose: 3000, // Closes after 3 seconds
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
     router.push("/calendar");
   };
 
@@ -36,7 +44,7 @@ const ReservationList = ({ data }) => {
                 item.employee_name,
                 item.id
               )
-            } // Update state and navigate
+            }
           >
             <div className="text-mantis-700 font-semibold text-xl">
               {item.resarvation_now_plan_name}

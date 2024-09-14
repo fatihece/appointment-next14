@@ -21,13 +21,6 @@ const initialState = {
     message: "",
   },
 };
-// Action türleri
-export const ActionTypes = {
-  GET_SERVICE: "GET_SERVICE",
-  UPDATE_DATE: "UPDATE_DATE",
-  UPDATE_CONTACT: "UPDATE_CONTACT",
-  RESET_STATE: "RESET_STATE",
-};
 
 // Reducer fonksiyonu
 // const reducer = (state, action) => {
@@ -68,11 +61,16 @@ const reservationReducer = (state, action) => {
       return {
         ...state,
         date: action.payload.date, // Update selected date
-        time: action.payload.time, // Update selected time
+
         day_number: action.payload.day_number, // Update day number (1 = Monday, etc.)
         reservation_name: action.payload.reservation_name, // Update reservation name
         employee_name: action.payload.employee_name, // Update employee name
         id: action.payload.id, // Update reservation ID
+      };
+    case "GET_TIME":
+      return {
+        ...state,
+        time: action.payload.time, // Update selected time
       };
     case "SET_CONTACT":
       return { ...state, contact: { ...state.contact, ...action.payload } };

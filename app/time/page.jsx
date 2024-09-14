@@ -1,8 +1,9 @@
-import Form from "@/components/Form";
 import React from "react";
 
+import Time from "@/components/Time";
+
 const page = () => {
-  return <Form />;
+  return <Time />;
 };
 
 export default page;

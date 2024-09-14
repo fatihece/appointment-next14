@@ -18,7 +18,6 @@ const initialState = {
   contact: {
     name: "",
     phone: "",
-    message: "",
   },
 };
 

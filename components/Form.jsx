@@ -14,7 +14,6 @@ const Form = () => {
   const { state, dispatch } = useAppContext();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [message, setMessage] = useState("");
 
   const router = useRouter();
   const [errors, setErrors] = useState({});
@@ -27,12 +26,10 @@ const Form = () => {
       payload: {
         name,
         phone,
-        message,
       },
     });
     setName("");
     setPhone("");
-    setMessage("");
     router.push("thank-you");
   };
 
@@ -89,26 +86,7 @@ const Form = () => {
               <p className="text-sm text-red-500">{errors.phone}</p>
             )} */}
           </div>
-          <div className="sm:col-span-2">
-            <label
-              htmlFor="message"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
-            >
-              Mesajiniz
-            </label>
-            <textarea
-              id="message"
-              rows="6"
-              value={message}
-              // onFocus={() => handleFieldFocus("message")}
-              onChange={(e) => setMessage(e.target.value)}
-              className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-              placeholder="Mesajiniz"
-            ></textarea>
-            {/* {errors.message && touchedFields.message && (
-              <p className="text-sm text-red-500">{errors.message}</p>
-            )} */}
-          </div>
+
           <button
             type="submit"
             className="text-white w-full bg-mantis-700 hover:bg-mantis-800 focus:ring-4 focus:outline-none focus:ring-mantis-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-mantis-600 dark:hover:bg-mantis-700 dark:focus:ring-mantis-800"

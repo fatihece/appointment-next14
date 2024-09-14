@@ -48,7 +48,7 @@ const CalendarComponent = () => {
 
   return (
     <section className="">
-      <div className="flex flex-col h-screen items-center justify-center px-3 mx-auto max-w-screen-md shadow-lg">
+      <div className="flex flex-col h-screen items-center justify-center px-3 mx-auto max-w-screen-md ">
         {!state.date && <Route />}
         <h6 className="text-xl font-semibold mb-3">Tarih ve saat seçiniz</h6>
         <DynamicCalendar

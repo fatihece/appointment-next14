@@ -13,7 +13,7 @@ const initialState = {
   day_number: 1,
   employee_name: "",
   available_times: [],
-  date: null, // To store the selected date
+  date: null,
   time: null,
   contact: {
     name: "",
@@ -59,12 +59,11 @@ const reservationReducer = (state, action) => {
     case "UPDATE_DATE":
       return {
         ...state,
-        date: action.payload.date, // Update selected date
-
+        date: action.payload.date,
         day_number: action.payload.day_number, // Update day number (1 = Monday, etc.)
-        reservation_name: action.payload.reservation_name, // Update reservation name
-        employee_name: action.payload.employee_name, // Update employee name
-        id: action.payload.id, // Update reservation ID
+        reservation_name: action.payload.reservation_name,
+        employee_name: action.payload.employee_name,
+        id: action.payload.id,
       };
     case "GET_TIME":
       return {

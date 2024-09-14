@@ -5,6 +5,7 @@ import { getFreeTimesByDate } from "@/lib/data-service";
 import { useAppContext } from "@/app/context/AppContext";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import Route from "./Route";
 
 const Time = () => {
   const router = useRouter();
@@ -49,9 +50,12 @@ const Time = () => {
   return (
     <section className="flex items-center justify-center min-h-screen">
       <div className="flex flex-col items-center justify-center w-full max-w-screen-md gap-4 p-4">
+        <Route />
+
         <h6 className="text-xl font-semibold mb-4 text-center">
           Lütfen bir saat seçiniz
         </h6>
+
         <div className="flex flex-wrap justify-center gap-4 w-full">
           {availableTimes.length > 0 ? (
             availableTimes.map((time, i) => (
@@ -69,7 +73,7 @@ const Time = () => {
               </div>
             ))
           ) : (
-            <div className="text-center">No available times for this date.</div>
+            <div className="text-center">Bu tarih için müsait zaman yok.</div>
           )}
         </div>
       </div>

@@ -70,46 +70,47 @@ const Form = () => {
       customer_name: contact.fullname,
       customer_phone: contact.phone,
     };
-    setIsSubmitting(true);
+    // setIsSubmitting(true);
 
-    try {
-      await new Promise((res) => setTimeout(res, 2000));
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/v1/web-resarvation/service-now-plan/add-resarvation`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json", // Ensure the server knows you're sending JSON
-          },
-          body: JSON.stringify({
-            requestBody,
-          }),
-        }
-      );
+    // try {
+    //   await new Promise((res) => setTimeout(res, 2000));
+    //   const response = await fetch(
+    //     `${process.env.NEXT_PUBLIC_BASE_URL}/v1/web-resarvation/service-now-plan/add-resarvation`,
+    //     {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json", // Ensure the server knows you're sending JSON
+    //       },
+    //       body: JSON.stringify({
+    //         requestBody,
+    //       }),
+    //     }
+    //   );
 
-      await new Promise((res) => setTimeout(res, 2000));
-      if (response.ok) {
-        return router.push("/thank-you");
-      } else {
-        console.error(
-          "Rezervasyon sırasında bir hata oluştu:",
-          response.status
-        );
-        toast.error(`Rezervasyon sırasında bir hata oluştu!`, {
-          position: "top-center",
-          autoClose: 3000, // Closes after 3 seconds
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      }
-    } catch (error) {
-      console.error("Rezervasyon sırasında bir hata oluştu:", error);
-    } finally {
-      setIsSubmitting(false);
-    }
+    //   await new Promise((res) => setTimeout(res, 2000));
+    //   if (response.ok) {
+    //     return router.push("/thank-you");
+    //   } else {
+    //     console.error(
+    //       "Rezervasyon sırasında bir hata oluştu:",
+    //       response.status
+    //     );
+    //     toast.error(`Rezervasyon sırasında bir hata oluştu!`, {
+    //       position: "top-center",
+    //       autoClose: 3000, // Closes after 3 seconds
+    //       hideProgressBar: true,
+    //       closeOnClick: true,
+    //       pauseOnHover: true,
+    //       draggable: true,
+    //       progress: undefined,
+    //     });
+    //   }
+    // } catch (error) {
+    //   console.error("Rezervasyon sırasında bir hata oluştu:", error);
+    // } finally {
+    //   setIsSubmitting(false);
+    // }
+    router.push("/thank-you");
   };
 
   return (

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+
 import { useAppContext } from "@/app/context/AppContext";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -7,6 +8,7 @@ import { useRouter } from "next/navigation";
 import Route from "./Route";
 
 const Form = () => {
+  const { state, dispatch } = useAppContext();
   const [contact, setContact] = useState({
     fullname: "",
     phone: "",
@@ -15,8 +17,8 @@ const Form = () => {
     fullname: "",
     phone: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { dispatch } = useAppContext();
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -32,14 +34,14 @@ const Form = () => {
     const newErrors = { fullname: "", phone: "" };
 
     if (!contact.fullname) {
-      newErrors.fullname = "Lütfen adınızı girin";
+      newErrors.fullname = "Lütfen adınızı giriniz";
       formIsValid = false;
     }
     if (!contact.phone) {
-      newErrors.phone = "Lütfen telefon numaranızı girin";
+      newErrors.phone = "Lütfen telefon numaranızı giriniz";
       formIsValid = false;
     } else if (!/^\d{11}$/.test(contact.phone)) {
-      newErrors.phone = "Geçerli bir telefon numarası girin (11 haneli)";
+      newErrors.phone = "Geçerli bir telefon numarası giriniz (11 haneli)";
       formIsValid = false;
     }
 
@@ -47,7 +49,7 @@ const Form = () => {
     return formIsValid;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validateForm()) return;
@@ -61,7 +63,53 @@ const Form = () => {
       },
     });
 
-    router.push("/thank-you");
+    const requestBody = {
+      service_now_plan_id: state.id,
+      plan_date: state.date,
+      plan_time: state.time,
+      customer_name: contact.fullname,
+      customer_phone: contact.phone,
+    };
+    setIsSubmitting(true);
+
+    try {
+      await new Promise((res) => setTimeout(res, 2000));
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/v1/web-resarvation/service-now-plan/add-resarvation`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json", // Ensure the server knows you're sending JSON
+          },
+          body: JSON.stringify({
+            requestBody,
+          }),
+        }
+      );
+
+      await new Promise((res) => setTimeout(res, 2000));
+      if (response.ok) {
+        return router.push("/thank-you");
+      } else {
+        console.error(
+          "Rezervasyon sırasında bir hata oluştu:",
+          response.status
+        );
+        toast.error(`Rezervasyon sırasında bir hata oluştu!`, {
+          position: "top-center",
+          autoClose: 3000, // Closes after 3 seconds
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    } catch (error) {
+      console.error("Rezervasyon sırasında bir hata oluştu:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -116,10 +164,10 @@ const Form = () => {
         </div>
 
         <button
-          type="submit"
-          className="bg-mantis-600 text-white p-2 rounded-md hover:bg-mantis-700"
+          className="bg-mantis-500 px-2 py-3 rounded-md text-white  hover:bg-mantis-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-700"
+          disabled={isSubmitting}
         >
-          Submit
+          {isSubmitting ? "Randevu Olusturuluyor..." : "Randevu Olustur"}
         </button>
       </form>
     </div>

@@ -1,7 +1,7 @@
-import CalendarComponent from "@/components/Calendar";
+import CalendarDate from "@/components/CalendarDate";
 
 const page = () => {
-  return <CalendarComponent />;
+  return <CalendarDate />;
 };
 
 export default page;

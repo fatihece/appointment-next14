@@ -10,7 +10,7 @@ import {
 const initialState = {
   id: 1,
   reservation_name: "",
-  day_number: 1,
+  day_number: 0,
   employee_name: "",
   available_times: [],
   date: null,
@@ -19,6 +19,8 @@ const initialState = {
     name: "",
     phone: "",
   },
+
+  showTime: false,
 };
 
 // Reducer fonksiyonu
@@ -64,6 +66,7 @@ const reservationReducer = (state, action) => {
         reservation_name: action.payload.reservation_name,
         employee_name: action.payload.employee_name,
         id: action.payload.id,
+        showTime: true,
       };
     case "GET_TIME":
       return {

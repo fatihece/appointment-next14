@@ -1,19 +1,20 @@
 "use client";
 import { format } from "date-fns";
-import { now } from "@/constants/config";
+import { now, maxDate } from "@/constants/config";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 
-import { useAppContext, ActionTypes } from "@/app/context/AppContext";
+import { useAppContext } from "@/app/context/AppContext";
 import Route from "./Route";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 const DynamicCalendar = dynamic(() => import("react-calendar"), { ssr: false });
 
 const CalendarComponent = () => {
   const router = useRouter();
   const { state, dispatch } = useAppContext();
-
+  // const [showTime, setShowTime] = useState(false);
   // Get day number from selected date (1 = Monday, etc.)
   const getDayNumber = (date) => {
     const day = date.getDay();
@@ -43,16 +44,18 @@ const CalendarComponent = () => {
       draggable: true,
       progress: undefined,
     });
-    router.push("/time");
+
+    // router.push("/time");
   };
 
   return (
     <section className="">
-      <div className="flex flex-col h-screen items-center justify-center px-3 mx-auto max-w-screen-md ">
+      <div className=" px-3 mx-auto max-w-screen-md ">
         {!state.date && <Route />}
-        <h6 className="text-xl font-semibold mb-3">Tarih ve saat seçiniz</h6>
+
         <DynamicCalendar
           minDate={now}
+          maxDate={maxDate}
           className="REACT-CALENDAR p-2"
           view="month"
           onClickDay={(date) => updateDateAndTime(date)}

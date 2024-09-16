@@ -6,6 +6,7 @@ import { useAppContext } from "@/app/context/AppContext";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import Route from "./Route";
+import { LoadingSpinner } from "./LoadingSpinner";
 
 const Time = () => {
   const router = useRouter();
@@ -46,21 +47,23 @@ const Time = () => {
     });
     router.push("form");
   };
+  // if (output.length === 0)
+  //   return <div className="text-center">Bu tarih için müsait zaman yok.</div>;
 
   return (
-    <section className="flex items-center justify-center min-h-screen">
+    <section className="flex items-center justify-center ">
       <div className="flex flex-col items-center justify-center w-full max-w-screen-md gap-4 p-4">
-        <Route />
-
+        {/* <Route /> */}
+        {/* 
         <h6 className="text-xl font-semibold mb-4 text-center">
           Lütfen bir saat seçiniz
-        </h6>
+        </h6> */}
 
         <div className="flex flex-wrap justify-center gap-4 w-full">
           {availableTimes.length > 0 ? (
             availableTimes.map((time, i) => (
               <div
-                className="bg-mantis-100 border border-mantis-200 rounded-lg shadow hover:bg-mantis-200 cursor-pointer px-4 py-3 w-[100px] text-center"
+                className="bg-mantis-100 border border-mantis-200 rounded-lg shadow hover:bg-mantis-200 cursor-pointer px-2 py-2  text-center"
                 key={`time-${i}`}
               >
                 <button
@@ -73,7 +76,8 @@ const Time = () => {
               </div>
             ))
           ) : (
-            <div className="text-center">Bu tarih için müsait zaman yok.</div>
+            // <div className="text-center">Bu tarih için müsait zaman yok.</div>
+            <LoadingSpinner />
           )}
         </div>
       </div>

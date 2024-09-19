@@ -26,7 +26,23 @@ export default function RootLayout({ children, params }) {
 					"min-h-screen flex flex-col bg-white font-sans antialiased",
 					fontSans.variable,
 				)}>
-				<Toaster position="bottom right" toastOptions={{ duration: 3000 }} />
+				<Toaster
+					position="bottom right"
+					toastOptions={{
+						duration: 3000,
+						success: {
+							style: {
+								background: "#f0fdf4",
+								color: "#065f46",
+							},
+						},
+						error: {
+							style: {
+								background: "red",
+							},
+						},
+					}}
+				/>
 				<AppProvider>
 					<AppHeader />
 					{children}

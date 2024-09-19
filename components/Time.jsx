@@ -58,7 +58,7 @@ const Time = () => {
 					{availableTimes.length > 0 ? (
 						availableTimes.map((time, i) => (
 							<div
-								className="bg-blue-50 border border-blue-200 rounded-lg shadow hover:bg-blue-100 cursor-pointer px-4 py-3 w-[100px] text-center"
+								className="bg-blue-50 border border-blue-200 rounded-lg shadow hover:bg-blue-100 cursor-pointer px-4 py-3 w-20 text-center"
 								key={`time-${i}`}>
 								<button
 									onClick={() => handleTimeSelection(time)}

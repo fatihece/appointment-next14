@@ -68,7 +68,7 @@ const ReservationList = ({ data }) => {
 								item.id,
 							)
 						}>
-						<div className="flex gap-4 w-full">
+						<div className="flex gap-4 w-full items-center">
 							<div className="w-16 h-16 inline-flex items-center justify-center text-center rounded-md border border-neutral-200 text-blue-500 transition group-hover:border-blue-200 group-active:border-white/40 group-active:text-white">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
@@ -91,10 +91,14 @@ const ReservationList = ({ data }) => {
 							</div>
 
 							<div
-								className="flex flex-col items-start mt-2
+								className="
               ">
-								<strong className="capitalize text-lg">{item.employee_name}</strong>
-								<div className="opacity-50">{item.resarvation_now_plan_name}</div>
+								<div className="capitalize text-lg font-semibold text-left">
+									{item.employee_name}
+								</div>
+								<div className="opacity-50 text-left ">
+									{item.resarvation_now_plan_name}
+								</div>
 							</div>
 
 							<div className="mr-auto"></div>

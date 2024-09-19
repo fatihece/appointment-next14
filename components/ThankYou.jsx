@@ -7,8 +7,8 @@ const ThankYou = () => {
 
 	console.log("Thank You", state);
 	return (
-		<section className="container mx-auto">
-			<div className=" min-h-screen flex items-center justify-center px-3 flex-1">
+		<section className="container m-auto">
+			<div className=" flex items-center justify-center px-3 flex-1">
 				<div className="bg-green-50 border border-green-300 text-green-800 p-6 rounded-lg shadow-lg text-center">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"

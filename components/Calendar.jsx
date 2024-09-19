@@ -47,9 +47,9 @@ const CalendarComponent = () => {
 	};
 
 	return (
-		<section className="">
-			<div className="flex flex-col h-screen items-center justify-center px-3 mx-auto max-w-screen-md ">
-				{!state.date && <Route />}
+		<section className="flex-1">
+			<div className="flex flex-col mt-5 items-center justify-center px-3 mx-auto max-w-screen-md ">
+				<Route />
 				<h6 className="text-xl font-semibold mb-3">Tarih ve saat seçiniz</h6>
 				<DynamicCalendar
 					minDate={now}

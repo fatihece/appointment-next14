@@ -21,7 +21,11 @@ export const metadata = {
 export default function RootLayout({ children, params }) {
 	return (
 		<html>
-			<body className={cn("min-h-screen bg-white font-sans antialiased", fontSans.variable)}>
+			<body
+				className={cn(
+					"min-h-screen flex flex-col bg-white font-sans antialiased",
+					fontSans.variable,
+				)}>
 				<Toaster position="bottom right" toastOptions={{ duration: 3000 }} />
 				<AppProvider>
 					<AppHeader />

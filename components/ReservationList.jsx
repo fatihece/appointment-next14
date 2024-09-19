@@ -32,7 +32,7 @@ const ReservationList = ({ data }) => {
 	};
 
 	return (
-		<div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+		<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 px-3 sm:px-0">
 			{data.output.map((item) => {
 				console.log(item);
 
@@ -90,7 +90,9 @@ const ReservationList = ({ data }) => {
 								</svg>
 							</div>
 
-							<div className="flex flex-col items-start mt-2">
+							<div
+								className="flex flex-col items-start mt-2
+              ">
 								<strong className="capitalize text-lg">{item.employee_name}</strong>
 								<div className="opacity-50">{item.resarvation_now_plan_name}</div>
 							</div>

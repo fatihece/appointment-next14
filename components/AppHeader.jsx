@@ -1,6 +1,6 @@
 function AppHeader() {
 	return (
-		<header className="bg-neutral-50 border-b border-neutral-100 py-4">
+		<header className="bg-neutral-50 border-b border-neutral-100 py-4 ">
 			<div className="container">
 				<div className="text-center">
 					<svg

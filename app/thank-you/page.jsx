@@ -2,7 +2,7 @@ import ThankYou from "@/components/ThankYou";
 import React from "react";
 
 const page = () => {
-  return <ThankYou />;
+	return <ThankYou />;
 };
 
 export default page;

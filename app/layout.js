@@ -1,23 +1,34 @@
-import { Open_Sans } from "next/font/google";
-
 import "./globals.css";
-import { Toaster } from "react-hot-toast";
-import { AppProvider } from "./context/AppContext";
 
-const open = Open_Sans({ subsets: ["latin"] });
+import { Inter as FontSans } from "next/font/google";
+import { Toaster } from "react-hot-toast";
+
+import { cn } from "@/lib/utils";
+import { AppProvider } from "./context/AppContext";
+import AppFooter from "@/components/AppFooter";
+import AppHeader from "@/components/AppHeader";
+
+const fontSans = FontSans({
+	subsets: ["latin"],
+	variable: "--font-sans",
+});
 
 export const metadata = {
-  title: "Randevu Al",
-  description: "Randevu almanin kolay ve pratik yolu",
+	title: "Randevu Al",
+	description: "Randevu almanin kolay ve pratik yolu",
 };
 
 export default function RootLayout({ children, params }) {
-  return (
-    <html>
-      <body className="max-w-screen-md mx-auto">
-        <Toaster position="bottom right" toastOptions={{ duration: 3000 }} />
-        <AppProvider> {children}</AppProvider>
-      </body>
-    </html>
-  );
+	return (
+		<html>
+			<body className={cn("min-h-screen bg-white font-sans antialiased", fontSans.variable)}>
+				<Toaster position="bottom right" toastOptions={{ duration: 3000 }} />
+				<AppProvider>
+					<AppHeader />
+					{children}
+					<AppFooter />
+				</AppProvider>
+			</body>
+		</html>
+	);
 }

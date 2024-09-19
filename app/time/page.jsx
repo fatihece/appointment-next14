@@ -3,7 +3,7 @@ import React from "react";
 import Time from "@/components/Time";
 
 const page = () => {
-  return <Time />;
+	return <Time />;
 };
 
 export default page;

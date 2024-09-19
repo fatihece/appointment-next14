@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useReducer, useState } from "reac
 const initialState = {
 	id: 1,
 	reservation_name: "",
-	day_number: 1,
+	day_number: 0,
 	employee_name: "",
 	available_times: [],
 	date: null,

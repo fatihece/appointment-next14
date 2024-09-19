@@ -124,6 +124,22 @@ const Form = () => {
 					<h6 className="text-xl font-semibold mb-3 text-center">
 						Bilgilerinizi giriniz
 					</h6>
+					<div className="mb-4 text-neutral-700 p-4 flex flex-col text-sm bg-neutral-50 border border-neutral-100">
+						<div>
+							<strong>Personel: </strong> {state.employee_name}
+						</div>
+						<div>
+							<strong>Islem:</strong> {state.reservation_name}
+						</div>
+						<div>
+							<strong>Tarih:</strong>
+							{state.date}
+						</div>
+						<div>
+							<strong>Zaman:</strong>
+							{state.time}
+						</div>
+					</div>
 					<div className="flex flex-col">
 						<label htmlFor="fullname" className="mb-1 font-medium text-gray-700">
 							Ad Soyad

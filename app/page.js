@@ -1,11 +1,10 @@
 import { getFreeTimesByDate, getServiceByDate } from "@/lib/data-service";
 
 import ReservationList from "@/components/ReservationList";
+
 export default async function Home() {
 	const data = await getServiceByDate();
 	const times = await getFreeTimesByDate(1, 2);
-	// console.log("DATAA", data);
-	console.log("data", data);
 
 	return (
 		<section className="flex-1">

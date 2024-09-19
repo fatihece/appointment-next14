@@ -57,7 +57,23 @@ const Time = () => {
 		<section className="container mx-auto">
 			<div className="flex-1 flex flex-col items-center justify-center max-w-screen-md gap-4 p-4 mx-auto">
 				<Route />
-				<h6 className="text-xl font-semibold mb-4 text-center">Lütfen bir saat seçiniz</h6>
+				<h6 className="text-xl font-semiboldtext-center">Lütfen bir saat seçiniz</h6>
+				{/* <p className="mb-3 text-neutral-400">
+					({state.employee_name} /{state.reservation_name}
+				</p>
+				<p className=" text-neutral-400 text-center -mt-2">{state.date} )</p> */}
+				<div className="mb-4 text-neutral-700 p-4  flex flex-col text-sm bg-neutral-50 border border-neutral-100">
+					<div>
+						<strong>Personel: </strong> {state.employee_name}
+					</div>
+					<div>
+						<strong>Islem:</strong> {state.reservation_name}
+					</div>
+					<div>
+						<strong>Tarih:</strong>
+						{state.date}
+					</div>
+				</div>
 				{loading ? (
 					<LoadingSpinner />
 				) : (
@@ -65,12 +81,12 @@ const Time = () => {
 						{availableTimes.length > 0 ? (
 							availableTimes.map((time, i) => (
 								<div
-									className="bg-blue-50 border border-blue-200 rounded-lg shadow hover:bg-blue-100 cursor-pointer px-4 py-3 w-20 text-center"
+									className="bg-blue-50 border border-blue-200 rounded-lg shadow hover:bg-blue-100 cursor-pointer px-4 py-3 w-[120px]  sm:w-20 text-center"
 									key={`time-${i}`}>
 									<button
 										onClick={() => handleTimeSelection(time)}
 										type="button"
-										className="w-full">
+										className="w-full text-2xl sm:text-base">
 										{time}
 									</button>
 								</div>

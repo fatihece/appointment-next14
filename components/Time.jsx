@@ -6,11 +6,13 @@ import { useAppContext } from "@/app/context/AppContext";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import Route from "./Route";
+import { LoadingSpinner } from "./LoadingSpinner";
 
 const Time = () => {
 	const router = useRouter();
 	const { state, dispatch } = useAppContext();
 	const [availableTimes, setAvailableTimes] = useState([]);
+	const [loading, setLoading] = useState(true);
 
 	// Fetch available times when the component is mounted
 	useEffect(() => {
@@ -19,12 +21,16 @@ const Time = () => {
 				try {
 					const times = await getFreeTimesByDate(state.day_number, state.id);
 					setAvailableTimes(times.output.avilable_times || []);
+					setLoading(false);
 				} catch (error) {
 					console.error("Error fetching available times:", error);
+					setLoading(false);
 				}
 			};
 
 			fetchAvailableTimes();
+		} else {
+			setLoading(false); // Set loading to false if no state is provided
 		}
 	}, [state.day_number, state.id]);
 
@@ -49,40 +55,41 @@ const Time = () => {
 
 	return (
 		<section className="container mx-auto">
-			<div className="flex-1 flex flex-col items-center justify-center  max-w-screen-md gap-4 p-4 mx-auto">
+			<div className="flex-1 flex flex-col items-center justify-center max-w-screen-md gap-4 p-4 mx-auto">
 				<Route />
-
 				<h6 className="text-xl font-semibold mb-4 text-center">Lütfen bir saat seçiniz</h6>
-
-				<div className="flex flex-wrap justify-center gap-4 w-full">
-					{availableTimes.length > 0 ? (
-						availableTimes.map((time, i) => (
-							<div
-								className="bg-blue-50 border border-blue-200 rounded-lg shadow hover:bg-blue-100 cursor-pointer px-4 py-3 w-20 text-center"
-								key={`time-${i}`}>
-								<button
-									onClick={() => handleTimeSelection(time)}
-									type="button"
-									className="w-full">
-									{time}
-								</button>
+				{loading ? (
+					<LoadingSpinner />
+				) : (
+					<div className="flex flex-wrap justify-center gap-4 w-full">
+						{availableTimes.length > 0 ? (
+							availableTimes.map((time, i) => (
+								<div
+									className="bg-blue-50 border border-blue-200 rounded-lg shadow hover:bg-blue-100 cursor-pointer px-4 py-3 w-20 text-center"
+									key={`time-${i}`}>
+									<button
+										onClick={() => handleTimeSelection(time)}
+										type="button"
+										className="w-full">
+										{time}
+									</button>
+								</div>
+							))
+						) : (
+							<div className="bg-[#fff3cd] border border-[#ffeeba] p-5 rounded-sm flex flex-col items-center">
+								<p className="text-[#85604] text-center">
+									<strong>Seçilen gün</strong> için uygun bir randevu bulunamadı,
+									lütfen başka bir gün seçin.
+								</p>
+								<Link
+									href="calendar"
+									className="text-black/60 rounded hover:underline hover:text-black inline-block">
+									Tarihe git
+								</Link>
 							</div>
-						))
-					) : (
-						<div className="bg-[#fff3cd] border border-[#ffeeba] p-5 rounded-sm flex flex-col items-center">
-							<p className="text-[#85604] text-center">
-								{" "}
-								<strong>Seçilen gün</strong> için uygun bir randevu bulunamadı,
-								lütfen başka bir gün seçin.
-							</p>
-							<Link
-								href="calendar"
-								className="text-black/60 rounded hover:underline hover:text-black inline-block">
-								Tarihe git
-							</Link>
-						</div>
-					)}
-				</div>
+						)}
+					</div>
+				)}
 			</div>
 		</section>
 	);

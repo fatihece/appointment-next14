@@ -99,7 +99,7 @@ const Time = () => {
 								</p>
 								<Link
 									href="calendar"
-									className="text-black/60 rounded hover:underline hover:text-black inline-block">
+									className="text-white rounded hover:underline inline-block bg-primary px-3 py-2 mt-3">
 									Tarihe git
 								</Link>
 							</div>

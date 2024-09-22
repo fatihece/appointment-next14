@@ -9,7 +9,7 @@ export default async function Home() {
 	return (
 		<section className="flex-1">
 			<div className="container">
-				<h2 className="text-center text-2xl mt-16 mb-5 font-bold">HOS GELDINIZ</h2>
+				<h2 className="text-center text-2xl mt-16 mb-5 font-bold">Hoş Geldiniz</h2>
 				<ReservationList data={data} />
 			</div>
 		</section>

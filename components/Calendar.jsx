@@ -50,7 +50,7 @@ const CalendarComponent = () => {
 		<section className="flex-1">
 			<div className="flex flex-col mt-5 items-center justify-center px-3 mx-auto max-w-screen-md ">
 				<Route />
-				<h6 className="text-xl font-semibold mb-3">Tarih ve saat seçiniz</h6>
+				<h6 className="text-xl font-semibold mb-3">Lütfen bir tarih seçiniz</h6>
 				<div className="mb-3 text-neutral-700 p-4 flex flex-col text-sm bg-neutral-50 border border-neutral-100">
 					<div>
 						<strong>Personel: </strong> {state.employee_name}

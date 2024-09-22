@@ -57,7 +57,7 @@ const Time = () => {
 		<section className="container mx-auto">
 			<div className="flex-1 flex flex-col items-center justify-center max-w-screen-md gap-4 p-4 mx-auto">
 				<Route />
-				<h6 className="text-xl font-semiboldtext-center">Lütfen bir saat seçiniz</h6>
+				<h6 className="text-xl font-semibold mb-3">Lütfen bir saat seçiniz</h6>
 				{/* <p className="mb-3 text-neutral-400">
 					({state.employee_name} /{state.reservation_name}
 				</p>

@@ -1,9 +1,8 @@
+import ThankYou from "@/components/ThankYou";
 import React from "react";
 
-import Time from "@/components/Time";
-
 const page = () => {
-	return <Time />;
+  return <ThankYou />;
 };
 
 export default page;

@@ -12,9 +12,9 @@ const NotFound = () => {
 							<Image
 								src="/404.png"
 								alt="Aradiginiz sayfaya erisilemedi"
-								className="object-cover w-[600px] "
-								width={700}
-								height={600}
+								className="object-cover w-[500px] "
+								width={500}
+								height={500}
 							/>
 						</div>
 						<p className="mb-2 text-2xl font-bold text-center text-gray-800 md:text-3xl">
@@ -26,7 +26,7 @@ const NotFound = () => {
 
 						<Link
 							href="/"
-							className="text-white rounded font-semibold no-underline bg-primary px-8 py-4"
+							className="text-white rounded font-semibold no-underline bg-primary px-6 py-3"
 							title="Go Home Link">
 							Ana Sayfaya Git
 						</Link>

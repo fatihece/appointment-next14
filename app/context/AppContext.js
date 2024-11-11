@@ -13,40 +13,11 @@ const initialState = {
 		name: "",
 		phone: "",
 	},
+	slug:''
 };
 
-// Reducer fonksiyonu
-// const reducer = (state, action) => {
-//   console.log("action", action);
-//   switch (action.type) {
-//     case ActionTypes.GET_SERVICE:
-//       return {
-//         ...state,
-//         id: action.payload.id,
-//         reservation_name: action.payload.resarvation_now_plan_name,
-//         day_number: 1,
-//         employee_name: action.payload.employee_name,
-//       };
-//     case ActionTypes.UPDATE_DATE:
-//       return {
-//         ...state,
-//         date: {
-//           ...state.date,
-//           date: action.payload.date,
-//           time: action.payload.time,
-//         },
-//       };
-//     case ActionTypes.UPDATE_CONTACT:
-//       return { ...state, contact: action.payload };
-//     case ActionTypes.RESET_STATE:
-//       return initialState;
-//     default:
-//       return state;
-//   }
-// };
 
 const reservationReducer = (state, action) => {
-	console.log("ACTION", action);
 	switch (action.type) {
 		case "SET_RESERVATION":
 			return { ...state, ...action.payload };
@@ -76,8 +47,7 @@ export const AppContext = createContext();
 
 //step2:create the provider
 export function AppProvider({ children }) {
-	const [state, dispatch] = useReducer(reservationReducer, initialState);
-	// console.log("DATA", state);
+	const [state, dispatch] = useReducer(reservationReducer, initialState)
 
 	return <AppContext.Provider value={{ state, dispatch }}>{children}</AppContext.Provider>;
 }
